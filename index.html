@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dune — the Golden Path</title>
+  <script type="module" crossorigin src="./assets/index-b6s8EYD5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BxddvHkz.css">
+</head>
+<body>
+  <a class="skip-link" href="#card">Skip to the card</a>
+  <div class="loader" id="loader" role="status">
+    <div class="loader-inner">
+      <div class="loader-ring"><span></span></div>
+      <p class="loader-title">Dune · the Golden Path</p>
+      <p class="loader-status" id="loader-status">reading the record</p>
+    </div>
+  </div>
+
+  <main id="app">
+    <section id="stage" aria-label="The stage">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <svg id="imp" hidden aria-label="The Imperium: people and powers at the playhead"></svg>
+      <div id="tree" hidden>
+        <div id="tree-fams" role="group" aria-label="Family"></div>
+        <div id="tree-view"><div id="tree-in"><svg id="tree-lines" aria-hidden="true"></svg></div></div>
+      </div>
+      <p id="pin" hidden></p>
+      <div id="cut" hidden></div>
+      <p id="caption" aria-live="polite"></p>
+    </section>
+
+    <div id="descent" class="glass" tabindex="0" role="region" aria-label="The descent: beside a worm, from the dune crest to bedrock" hidden></div>
+
+    <section id="storypanel" class="glass" aria-label="The story, chapter by chapter" hidden>
+      <button type="button" class="sp-close" aria-label="Close the chapter">×</button>
+      <div class="sp-head"><p id="sp-count"></p><p id="sp-year"></p></div>
+      <h2 id="sp-title"></h2>
+      <div id="sp-text-wrap"><div id="sp-text" tabindex="0"></div><span class="cue" aria-hidden="true">more ↓</span></div>
+      <p id="sp-power"></p>
+      <div class="sp-nav">
+        <button type="button" class="t-btn" data-sp="-1">‹ Previous</button>
+        <ol id="sp-dots" aria-label="Chapters"></ol>
+        <button type="button" class="t-btn next" data-sp="1">Next chapter ›</button>
+      </div>
+    </section>
+
+    <section id="about" class="glass" role="dialog" aria-label="About this piece" hidden></section>
+
+    <div id="scrim" hidden></div>
+    <div id="reading" class="glass pop" role="dialog" aria-modal="true" aria-labelledby="reading-h" hidden>
+      <h2 id="reading-h">Avoid spoilers</h2>
+      <p class="hint">Still reading the saga? Choose the last book you have finished. Everything after it — people, events, chapters, terms — is hidden, and the timeline beyond it is dimmed.</p>
+      <div id="read" class="readpick" role="group" aria-label="I have read up to">
+        <button type="button" data-read="1">Dune</button>
+        <button type="button" data-read="2">Dune Messiah</button>
+        <button type="button" data-read="3">Children of Dune</button>
+        <button type="button" data-read="4">God Emperor</button>
+        <button type="button" data-read="5">Heretics</button>
+        <button type="button" data-read="6">All six</button>
+      </div>
+      <p id="withheld" class="hint"></p>
+      <h3>Sources</h3>
+      <label class="layerline"><input type="checkbox" id="layer"> Also use Expanded Dune and the Encyclopedia</label>
+      <p id="layer-adds" class="hint"></p>
+      <button type="button" class="t-btn done">Done</button>
+    </div>
+
+    <aside id="note" class="glass" role="dialog" aria-label="Concept note" hidden></aside>
+
+    <div id="zoom" class="glass" role="group" aria-label="Zoom" hidden>
+      <button type="button" class="t-btn" data-zoom="in" aria-label="Zoom in">+</button>
+      <button type="button" class="t-btn" data-zoom="out" aria-label="Zoom out">−</button>
+      <button type="button" class="t-btn" data-zoom="fit">Fit</button>
+      <button type="button" class="t-btn" data-zoom="key" aria-expanded="false" aria-controls="key">Key</button>
+    </div>
+    <div id="key" class="glass" role="dialog" aria-label="Key" hidden></div>
+
+    <header id="top" class="glass">
+      <div id="title">
+        <h1>Dune <span>· the Golden Path</span></h1>
+        <p id="where"></p>
+      </div>
+      <nav id="rooms" role="tablist" aria-label="Rooms"></nav>
+      <dl id="readout" tabindex="0" aria-label="Readout at the playhead"></dl>
+      <div id="finder" role="search">
+        <label class="sr" for="find">Search people, terms and chapters</label>
+        <svg class="find-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="find" type="search" autocomplete="off" placeholder="Search people, terms, places, chapters…" aria-controls="find-list" aria-autocomplete="list">
+        <ul id="find-list" role="listbox" hidden></ul>
+      </div>
+      <div id="controls">
+        <button type="button" id="reading-btn" class="chip" aria-expanded="false" aria-controls="reading" aria-haspopup="dialog">Spoilers<span class="rl-v">: <span id="reading-label">all shown</span></span></button>
+        <button type="button" id="about-btn" class="quiet" aria-label="Notes on the sources">Notes</button>
+      </div>
+    </header>
+
+    <aside id="card" class="glass panel--accented" tabindex="-1">
+      <div class="room-card" data-room="arrakis">
+        <div id="amode" role="group" aria-label="What to show">
+          <button type="button" data-amode="surface">Surface</button>
+          <button type="button" data-amode="cycle">Spice cycle</button>
+          <button type="button" data-amode="descent">Descent</button>
+        </div>
+        <nav id="loop" aria-label="The spice cycle, eight steps">
+          <p class="sub">The spice cycle</p>
+          <ol></ol>
+        </nav>
+        <div id="card-body" aria-live="polite" tabindex="0" aria-label="What the record says"></div>
+        <div id="stepper">
+          <button class="t-btn" id="prev" type="button" aria-label="Previous step">‹</button>
+          <span id="stepn"></span>
+          <button class="t-btn" id="next" type="button" aria-label="Next step">›</button>
+        </div>
+      </div>
+      <div class="room-card" data-room="imperium" hidden>
+        <div id="imode" role="group" aria-label="Layout">
+          <button type="button" data-imode="tree">Family tree</button>
+          <button type="button" data-imode="bloodlines">Connections</button>
+        </div>
+        <div id="icard-body" aria-live="polite"></div>
+      </div>
+    </aside>
+
+    <footer id="rail" class="glass"></footer>
+  </main>
+</body>
+</html>
